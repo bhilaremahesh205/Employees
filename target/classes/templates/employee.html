@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee List</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+<!-- 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css" />
+ -->
+ 	
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+ <div layout:freagment="content" >
+     <div class="row col-xs-8 col-md-8" >
+		 <a href="/create" class="btn btn-primary">
+		 	<span class="glyphicon glyphicon-plus-sign">Add Employee Record</span>
+		 </a>
+	</div>
+	<div class="row col-xs-8 col-md-8">
+		 <h2>Employee List</h2>
+		 <div class="table-responsive">
+		     <table class="table" id="employee-table">
+			      <thead>
+				  <tr>
+				      <th>Id</th>
+					  <th>Name</th>
+					  <th>Email</th>
+					  <th>Contact</th>
+					  <th>Address</th>
+					  <th>Designation</th>	  
+				  </tr>
+				  </thead>
+				  <tbody>
+				  <tr th:each="employee : ${employees}">
+				  <td><a th:text="${employee.empId}" ></a></td>
+				  <td><a th:text="${employee.empName}"></a></td>
+				  <td th:text="${employee.empEmail}"></td>
+				  <td th:text="${employee.empContact}"></td>
+				  <td th:text="${employee.empAddress}"></td>
+				  <td th:text="${employee.empDesignation}"></td>
+				  <td>
+				  	<a th:href="@{'/edit/' + ${employee.empId}}" class="btn btn-danger">
+                    Edit
+                    </a>
+                    <a th:href="@{'/delete/' + ${employee.empId}}" class="btn btn-danger" onclick="return confirm('Are you sure?');">
+                    Delete
+                    </a>
+				  </td>
+				  </tdody>
+				  
+			 </table>
+		 </div>
+	 </div>
+ 
+ </div>  
+</body>
+</html>
